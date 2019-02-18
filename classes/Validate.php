@@ -17,6 +17,11 @@
                         $this->addError("{$item} is required");
                     } else if(!empty($value)) {
                         switch($rule){
+                            case 'alphaNum':
+                                if($rule_value = 'yes' && is_numeric($value)){
+                                    $this->addError("{$item} must contain letters");
+                                }
+                            break;
                             case 'min':
                                 if(strlen($value)<$rule_value){
                                     $this->addError("{$item} must be a MINIMUM of {$rule_value} lettes");

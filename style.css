@@ -1,0 +1,154 @@
+body {
+    color: #d3c3c3;
+    font-size: 18px;
+    font-weight: 500; 
+    width: auto;  
+    overflow: hidden;
+    
+}
+
+
+.container {
+    /* background-image: url('assets/img/img.jpg'); */
+    /* background-size: cover; 
+    background-position: center;
+    display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    
+    
+    
+
+}
+
+
+.container-fluid.img {
+    background-image: url('assets/img/img.jpg');
+    
+    background-size: cover; 
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.container-fluid.img.top {
+    justify-content: left;
+    align-items: flex-start;
+
+}
+.col-xs-4.both {
+    border-radius: 15px;
+}
+.col-xs-4.right {
+    border-radius: 0 15px 15px 0;
+}
+
+.col-xs-4.left {
+    border-radius: 15px 0  0 15px;
+}
+
+
+.col-xs-4 {
+    background: rgb(82, 33, 33, .65);
+
+    display: flex;
+    height: 550px;
+    width: 380px;
+    /* justify-content: center;
+    align-items: center; */
+    padding: 20px 15px;
+    
+}
+
+.img {
+    opacity: .90 ;
+}
+
+.header {
+    margin-top: 5%;
+}
+
+h1.form {
+    
+    margin-left: 50px;
+    font-size: 60px;
+}
+
+.field {
+    padding-bottom: 10px;
+}
+
+input {
+    transition: all .9s ease-out;
+    background: none;
+}
+
+input[type=text], input[type=password] {
+    border-radius: 2px;
+    padding: 2px 5px;
+    border: 1.5px solid #cccccc;
+    
+}
+
+
+input[type=submit] {
+    border-radius: 2px;
+    padding: 7px 11px;
+    border: 1px solid #693b3b;
+    background-color: rgba(185, 57, 57, 0.5);
+    color: white;
+    font-weight: 200;
+    transition: all .8s ease;
+    
+
+}
+
+input[type=submit]:hover {
+    color:#693b3b;
+    font-weight: 500;
+    padding: 10px 15px;
+}
+
+
+label.remember {
+    font-size: 50px;
+}
+
+input[type=checkbox] {
+    -webkit-appearance:none;
+    width:14px;
+    height:14px;
+    background:white;
+    border-radius:2px;
+    border:2px solid #555;
+    
+}
+
+input[type=checkbox]:checked {
+
+    background:rgb(36, 22, 22);
+    cursor: pointer;
+
+}
+
+input:focus {
+    outline: none !important;
+    border:1px solid red;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+input:hover {
+    background-color: rgba(72, 196, 113, 0.966);
+}
+
+input:hover, input:hover::placeholder {
+    color: rgba(10, 4, 4, 0.6);
+}
+
+input::placeholder {
+    color: #4bbcc4;
+}

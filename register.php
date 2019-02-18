@@ -17,7 +17,12 @@ require_once 'core/init.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <!-- form --------------------------------------- -->
@@ -27,13 +32,11 @@ require_once 'core/init.php';
 
 
 <body>
-<?php 
-
+  <?php 
+$errors = '';
 
 if(Input::exists()){
   if(Token::check(Input::get('token')));
-
-  echo('i have been run!');
 }
 
 
@@ -45,7 +48,8 @@ if(Input::exists()) {
       "required" => "true",
       "min" => 2,
       "max" => 20,
-      "unique" => 'users'
+      "unique" => 'users',
+      'alphaNum' =>'yes'
     ),
     "password" => array(
       "required" => "true",
@@ -66,26 +70,38 @@ if(Input::exists()) {
 
   if($validation->passed()){
     $user = new User();
+    $salt = Hash::salt(32);
+
+    
+    
+
     try {
 
       $user->create(array(
-        'user'=> '',
-        'password'=> '',
-        'salt'=> '',
-        'username'=> '',
-        'joined'=> '',
-        'user_group'=> '',
+        'username'=> Input::get('username'),
+        'password'=> Hash::make(Input::get('password'),$salt),
+        'salt'=> $salt,
+        'name'=> Input::get('name'),
+        'joined'=> date('Y-m-d H:i:s'),
+        'user_group'=> 1,
       ));
 
+      Session::flash('home','Welcome You are now PART of the Crowd, Wise of you');
+      // Redirect::to(404);
+      Redirect::to('index');
+
     } catch (Exception $e) {
-      die($e->getMessage()); 
+      die($e->getMessage());
     }
 
   } else {
     foreach($validation->errors() as $error){
-      echo $error . '<br>';
+      $errors .= $error.'<br>';
+
     }
   }
+
+  
 } 
 
 
@@ -93,29 +109,55 @@ if(Input::exists()) {
 
 ?>
 
-  <div class="container row mt-5 ml-5">
-    <form action="" method="post">
-      <div class="field mt-3 ml-5">
-        <label for="username"></label>
-        <input type="text"  name="username" value="<?php echo escape(Input::get('username')); ?>" id="username" placeholder="Username...">
+  <div class="container-fluid text-center img">
+    <div class="col-xs-4 left">
+      <form action="" method="post">
+        <h1 class="text-weight-bold py-5 form lead">Register</h1>
+
+        <div class="field mt-3 ml-5">
+          <label for="username"></label>
+          <input type="text" name="username" value="<?php echo escape(Input::get('username')); ?>" id="username"
+            placeholder="Username...">
+        </div>
+
+        <div class="field mt-3 ml-5">
+          <label for="password"></label>
+          <input type="password" name="password" value="" autocomplete="off" id="password" placeholder="Password...">
+        </div>
+
+        <div class="field mt-3 ml-5">
+          <label for="password_again"></label>
+          <input type="password" name="password_again" value="" autocomplete="off" id="password_again" placeholder="Password again...">
+        </div>
+
+        <div class="field mt-3 ml-5">
+          <label for="name"></label>
+          <input type="text" name="name" value="<?php echo escape(Input::get('name')); ?>" id="name" placeholder="name...">
+        </div>
+
+        <div class="field mt-3 ml-5">
+          <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+          <input type="submit" value="submit">
+
+        </div>
+
+      </form>
+
+    </div>
+
+    <div class="col-xs-4 right">
+      <div class="container errors">
+        <div class="">
+          <a href="#"><img src="assets/img/logo.png" alt="" width="300px"></a>
+        </div>
+        <div class="error-box">
+          <?php if($errors) {
+       echo($errors);} ?>
+        </div>
+
       </div>
-      <div class="field mt-3 ml-5">
-        <label for="password"></label>
-        <input type="password"  name="password" value="" autocomplete="off" id="password" placeholder="Password...">
-      </div>
-      <div class="field mt-3 ml-5">
-        <label for="password_again"></label>
-        <input type="password"  name="password_again" value="" autocomplete="off" id="password_again" placeholder="Password again...">
-      </div>
-      <div class="field mt-3 ml-5">
-        <label for="name"></label>
-        <input type="text" name="name" value="<?php echo escape(Input::get('name')); ?>" id="name" placeholder="name...">
-      </div>
-      <div class="field mt-3 ml-5">
-        <input type="hidden" name = "token" value="<?php echo Token::generate(); ?>">  
-        <input type="submit" value="submit">  
-      </div>
-    </form>
+    </div>
+
   </div>
 
 

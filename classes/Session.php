@@ -7,7 +7,8 @@ class Session {
     }
 
     public static function put($name,$value){
-        return $_SESSION[$name] = $value; 
+        
+        return $_SESSION[$name] = $value;  //displays error when not logged in -- CHECK
     }
 
     public static function get($name){
