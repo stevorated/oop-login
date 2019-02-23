@@ -2,28 +2,8 @@
 
 require_once 'core/init.php';
 
-
-
-
 ?>
 
-<!doctype html>
-<html lang="en">
-
-<head>
-  <title>Register</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="style.css">
-</head>
 
 <!-- form --------------------------------------- -->
 
@@ -31,7 +11,7 @@ require_once 'core/init.php';
 
 
 
-<body>
+
   <?php 
 $errors = '';
 
@@ -96,7 +76,7 @@ if(Input::exists()) {
 
   } else {
     foreach($validation->errors() as $error){
-      $errors .= $error.'<br>';
+      $errors .='<p class="">'. $error.'</p>';
 
     }
   }
@@ -109,10 +89,28 @@ if(Input::exists()) {
 
 ?>
 
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Register</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head> 
+<body>  
   <div class="container-fluid text-center img">
-    <div class="col-xs-4 left">
+    <div class="col-xs-4">
       <form action="" method="post">
-        <h1 class="text-weight-bold py-5 form lead">Register</h1>
+        <h1 class="text-weight-bold py-5 lead form">Register</h1>
 
         <div class="field mt-3 ml-5">
           <label for="username"></label>
@@ -141,22 +139,15 @@ if(Input::exists()) {
 
         </div>
 
+        <div class="error-box text-center">
+          <?php if($errors) {
+        echo($errors);} ?>
+        </div>
       </form>
 
     </div>
 
-    <div class="col-xs-4 right">
-      <div class="container errors">
-        <div class="">
-          <a href="#"><img src="assets/img/logo.png" alt="" width="300px"></a>
-        </div>
-        <div class="error-box">
-          <?php if($errors) {
-       echo($errors);} ?>
-        </div>
 
-      </div>
-    </div>
 
   </div>
 

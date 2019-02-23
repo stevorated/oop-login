@@ -136,11 +136,19 @@ class DB {
     }
 
     public function results(){
-        return $this->_results;
+        if(!$this->_results){
+            echo 'No Data';
+        }else {
+            return $this->_results;
+        }
+        
     }
     
     public function first(){
-        return $this->results()[0];
+        if(!$this->results()){
+            // Echoed in results instead
+        } else{return $this->results()[0];}
+        
     }
 
     public function count(){

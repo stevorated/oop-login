@@ -31,6 +31,15 @@ class User {
         {throw new Exception('There was a PROBLEM CREATING the user.');}
     }
 
+    public function update ($fields = array(), $id = null) {
+        if(!$id && $this->isLoggedIn()){
+            $id = $this->data()->id;
+        }
+        if(!$this->_db->update('users',$id ,$fields)){
+            throw new Exception('No update, PROBLEM!');
+        }
+    }
+
     private function find($user = null){
         if($user){
             $field = (is_numeric($user)) ? 'id' : 'username';
@@ -78,6 +87,17 @@ class User {
         }
 
 
+    }
+
+    public function hasPermission($key){
+        $group = $this->_db->get('groups',array('id','=',$this->data()->user_group));
+        if($group->count()){
+            $permissions = json_decode($group->first()->permissions,true);
+            if($permissions[$key] === 1){
+                return true;
+            }
+        }
+        return false;
     }
 
     public function exists(){

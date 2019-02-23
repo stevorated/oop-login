@@ -57,7 +57,7 @@ if(Input::exists()){
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 <!-- form --------------------------------------- -->
@@ -69,9 +69,9 @@ if(Input::exists()){
 <body>
 
   <div class="container-fluid text-center img">
-    <div class="col-xs-4 left">
+    <div class="col-xs-4">
       <form action="" method="post">
-        <h1 class="lead py-5 form">Login</h1>
+        <h1 class=" lead py-5 form">Login</h1>
 
 
         <div class="field mt-3 ml-5">
@@ -99,19 +99,15 @@ if(Input::exists()){
           <input type="submit" value="submit">
         </div>
 
+        <div class="error-box">
+          <?php if($errors) {
+       echo($errors);} ?>
+        </div>
+
 
       </form>
     </div>
-    <div class="col-xs-4 right">
-    <div class="">
-          <a class="ml-4" href="#"><img src="assets/img/logo.png" alt="" width="300px"></a>
-          <div class="container errors  ">
-            <?php if($errors) {
-               echo($errors);} ?>
-              </div>
-        </div>
-    
-    </div>
+
   </div>
 
 
