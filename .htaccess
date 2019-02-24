@@ -1,0 +1,20 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+# Deny access to filenames starting with dot(.)
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+# custom 404
+ErrorDocument 403 /inc/errors/404.php
+ErrorDocument 404 /inc/errors/404.php
+# Hide the contents of directories
+Options -Indexes
+
+
+
+
+# Disable directory browsing 
+# Options -Indexes

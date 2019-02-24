@@ -18,7 +18,7 @@ class User {
                 if($this->find($user)){
                     $this->_isLoggedIn = true;
                 } else {
-                    //process logout
+                    Redirect::to('index.php');
                 }
             }
         } else {
@@ -27,8 +27,16 @@ class User {
     }
 
     public function create($fields=array()){
-        if(!$this->_db->insert('users',$fields)) 
-        {throw new Exception('There was a PROBLEM CREATING the user.');}
+        if(!$this->_db->insert('users',$fields)) {
+            throw new Exception('There was a PROBLEM CREATING the user.');
+        } else {
+            $login = $this->login(Input::get('username'),Input::get('password'));
+            if($login) {
+                Redirect::to('index');
+            } else {
+                echo '<p>Sorry somthing went wrong.</p>';
+            }
+        }
     }
 
     public function update ($fields = array(), $id = null) {

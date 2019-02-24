@@ -46,7 +46,7 @@ if(Input::exists()){
               'salt'=>$salt
             ));
             Session::flash('home','Your Password Has been updated!.');
-            Redirect::to('index');
+            Redirect::to('index','');
           } catch (Exception $e) {
             die($e->getMessage);
           }

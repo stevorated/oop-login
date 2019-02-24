@@ -25,7 +25,7 @@ body {
 
 
 .container-fluid.img {
-    background-image: url('../img/img.jpg');
+    /* background-image: url('../img/img.jpg'); */
     
     background-size: cover; 
     background-position: center;
@@ -166,7 +166,7 @@ input:hover, input:hover::placeholder {
     color: rgba(10, 4, 4, 0.6);
 }
 
-input::placeholder {
+
 .error-box {
     display: flex;
     flex-direction: column;

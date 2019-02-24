@@ -67,8 +67,7 @@ if(Input::exists()) {
       ));
 
       Session::flash('home','Welcome You are now PART of the Crowd, Wise of you');
-      // Redirect::to(404);
-      Redirect::to('index');
+      Redirect::to('index','');
 
     } catch (Exception $e) {
       die($e->getMessage());
@@ -76,7 +75,7 @@ if(Input::exists()) {
 
   } else {
     foreach($validation->errors() as $error){
-      $errors .='<p class="">'. $error.'</p>';
+      $errors .='<p class="ml-5 mt-0">'. $error.'</p>';
 
     }
   }
@@ -139,7 +138,7 @@ if(Input::exists()) {
 
         </div>
 
-        <div class="error-box text-center">
+        <div class="error-box text-center mt-4">
           <?php if($errors) {
         echo($errors);} ?>
         </div>

@@ -25,13 +25,13 @@ if(Input::exists()){
 
             $login = $user->login(Input::get('username'),Input::get('password'),$remember);
             if($login) {
-                Redirect::to('index');
+                Redirect::to('index','');
             } else {
                 echo '<p>Sorry your details are wrong.</p>';
             }
         } else {
             foreach ($validation->errors() as $error){
-              $errors .= '<p>'.$error.'</p>';
+              $errors .= '<p class="ml-5">'.$error.'</p>';
             }
         }
     }
@@ -99,7 +99,7 @@ if(Input::exists()){
           <input type="submit" value="submit">
         </div>
 
-        <div class="error-box">
+        <div class="error-box text-center mt-4">
           <?php if($errors) {
        echo($errors);} ?>
         </div>

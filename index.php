@@ -1,3 +1,23 @@
+<html lang="en">
+
+<head>
+  <title>Index</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+
+
+<body>
+
 <?php
 
 require_once 'core/init.php';
@@ -11,33 +31,15 @@ $user = new User();
 
 if($user->isLoggedIn()){
 ?>
-<html lang="en">
-
-<head>
-  <title>login page</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-
-  <link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-<!-- form --------------------------------------- -->
-
-<body>
 
   <div class="container-fluid img top">
     <div class="col-9">
-      <h1 class="header">Hello <a href="profile.1.php?user=<?php echo escape($user->data()->username) ?>"><?php echo escape($user->data()->name) ?></a></h1>
+      <h1 class="header">Hello <a href="profile?user=<?php echo escape($user->data()->username) ?>"><?php echo escape($user->data()->name) ?></a></h1>
 
       <ul>
-        <li><a href="logout.php">Log Out</a></li>
-        <li><a href="update.php">Update Details</a></li>
-        <li><a href="changepassword.php">Change Password</a></li>
+        <li><a href="logout">Log Out</a></li>
+        <li><a href="update">Update Details</a></li>
+        <li><a href="changepassword">Change Password</a></li>
         <li></li>
         <li></li>
       </ul>
@@ -46,17 +48,13 @@ if($user->isLoggedIn()){
         echo '<h4>Hello there Mister Admin..</h4>';
       }
 } else {
-  echo('<h1 class="header">You need to <a href="login.php">Log in</a> Or <a href="register.php">Register</a></h1>');
+  echo('<h1 class="header text-center">You need to <a href="login">Log in</a> Or <a href="register">Register</a></h1>');
 }
 
 
 
 ?>
 
-    </div>
-    <!--  end of form --------------------------------------- -->
-
-  </div>
 
 
 
